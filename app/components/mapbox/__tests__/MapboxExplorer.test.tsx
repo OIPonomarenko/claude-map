@@ -1,4 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import mapboxgl from 'mapbox-gl'
 import MapboxExplorer from "@/app/components/mapbox/MapboxExplorer"
 
