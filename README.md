@@ -1,6 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-![CI](https://github.com/YOUR_USERNAME/claude-map/actions/workflows/ci.yml/badge.svg)
+![Tests](https://github.com/YOUR_USERNAME/claude-map/actions/workflows/test.yml/badge.svg)
+![Lint](https://github.com/YOUR_USERNAME/claude-map/actions/workflows/lint.yml/badge.svg)
+![Build](https://github.com/YOUR_USERNAME/claude-map/actions/workflows/build.yml/badge.svg)
 
 ## Getting Started
 
@@ -48,17 +50,39 @@ Tests are located in `__tests__` directories next to the components they test:
 
 ## CI/CD Pipeline
 
-This project uses GitHub Actions for continuous integration and deployment.
+This project uses GitHub Actions for continuous integration with separate workflows for better visibility and parallel execution.
 
 ### Workflows
 
-**CI Workflow** (`.github/workflows/ci.yml`)
+The CI/CD pipeline is split into three independent workflows that run in parallel:
+
+#### 1. **Tests Workflow** (`.github/workflows/test.yml`)
 - Triggers on push to `main` and on pull requests
-- Runs linter (`npm run lint`)
-- Runs all tests with coverage (`npm test -- --coverage`)
-- Builds the application
-- Uploads coverage reports to Codecov (optional)
-- Uploads build artifacts
+- Runs all tests with coverage reporting
+- Uses 50% of available workers for optimal performance
+- Uploads coverage to Codecov (optional)
+- Generates coverage artifacts (retained for 30 days)
+- Posts coverage summary as PR comment
+
+#### 2. **Lint Workflow** (`.github/workflows/lint.yml`)
+- Triggers on push to `main` and on pull requests
+- Runs ESLint to check code quality
+- Ensures consistent code style across the project
+- Posts notification on PR if linting fails
+
+#### 3. **Build Workflow** (`.github/workflows/build.yml`)
+- Triggers on push to `main` and on pull requests
+- Builds the Next.js application for production
+- Validates that the app compiles without errors
+- Uploads build artifacts (retained for 7 days)
+- Posts build success notification on PRs
+
+### Benefits of Separate Workflows
+
+✅ **Parallel Execution** - All three workflows run simultaneously, reducing total CI time
+✅ **Clear Visibility** - Easy to identify which step failed (test, lint, or build)
+✅ **Independent Status** - Each workflow has its own status badge
+✅ **Flexible Configuration** - Each workflow can be configured independently
 
 ### Setup Requirements
 
@@ -72,6 +96,13 @@ To add secrets:
 2. Navigate to Settings → Secrets and variables → Actions
 3. Click "New repository secret"
 4. Add the secret name and value
+
+### Workflow Status
+
+You can view the status of all workflows in the Actions tab of your repository. Each workflow will show:
+- ✅ Green checkmark if all checks pass
+- ❌ Red X if any check fails
+- 🟡 Yellow circle if the workflow is running
 
 ## Learn More
 

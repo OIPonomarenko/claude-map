@@ -33,7 +33,7 @@ export default function MapboxExplorer({
     return () => {
       mapRef.current?.remove()
     }
-  }, [])
+  }, [initialCenter, initialZoom])
 
   return (
     <div ref={mapContainerRef} id='map-container' style={{minHeight: 'calc(100vh - 260px)'}} />
