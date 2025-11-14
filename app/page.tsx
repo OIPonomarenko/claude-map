@@ -1,4 +1,4 @@
-import MapboxExplorer from "@/app/components/MapboxExplorer"
+import MapboxExplorer from "@/app/components/mapbox/MapboxExplorer"
 import NavBar from "@/app/components/navbar/NavBar"
 
 export default function Home() {

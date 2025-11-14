@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import mapboxgl, {LngLatLike} from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const defaultCoords: LngLatLike = [48.46, 35.031]
+const defaultCoords: LngLatLike = [35.004776125010544, 48.43349586012707]
 
 
 interface MapboxExplorerProps {
@@ -14,7 +14,7 @@ interface MapboxExplorerProps {
 
 export default function MapboxExplorer({
                                          initialCenter = defaultCoords,
-                                         initialZoom = 8
+                                         initialZoom = 10
 }: MapboxExplorerProps) {
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const mapContainerRef = useRef<HTMLDivElement>(null)
