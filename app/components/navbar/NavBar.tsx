@@ -35,9 +35,9 @@ const NavBar = () => {
 
             <div className="hidden md:block">
               <div className="flex items-center md:ms-6">
-                <div className="rounded-full relative text-slate-200 hover:bg-slate-950 hover:text-white p-2">
-                  <Image src="/bell_light.svg" alt="Map Explorer Logo" width={24} height={24} priority />
-                </div>
+                <button className="rounded-full relative text-slate-200 cursor-pointer hover:bg-slate-950 hover:text-white p-2">
+                  <Image src="/bell_light.svg" alt="Notification bell" width={24} height={24} priority />
+                </button>
                 <div>
 
                 </div>
