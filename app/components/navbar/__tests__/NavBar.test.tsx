@@ -27,7 +27,7 @@ describe('NavBar', () => {
   const renderNavBar = () => render(<NavBar />)
 
   const getLogo = () => screen.getByAltText('Map Explorer Logo')
-  const getBell = () => screen.getByAltText('notification bell')
+  const getBell = () => screen.getByAltText('Notification bell')
   const getNavLink = (label: string) => screen.getByText(label)
 
   describe('Rendering', () => {

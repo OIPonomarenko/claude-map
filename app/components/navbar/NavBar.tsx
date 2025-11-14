@@ -36,7 +36,7 @@ const NavBar = () => {
             <div className="hidden md:block">
               <div className="flex items-center md:ms-6">
                 <div className="rounded-full relative text-slate-200 hover:bg-slate-950 hover:text-white p-2">
-                  <Image src="/bell_light.svg" alt="notification bell" width={24} height={24} priority />
+                  <Image src="/bell_light.svg" alt="Notification bell" width={24} height={24} priority />
                 </div>
                 <div>
 
