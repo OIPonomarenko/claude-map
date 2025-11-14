@@ -101,10 +101,6 @@ Detailed explanation of changes:
 - What changed
 - Why it changed
 - Any important notes
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ### Commit Types:

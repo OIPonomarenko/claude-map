@@ -27,7 +27,6 @@ You are a code reviewer and commit message generator. Follow these steps:
      - What changed
      - Why it changed
      - Any breaking changes or important notes
-   - Add footer with co-author tag
 
 4. **Ask for Confirmation**:
    - Show the proposed commit message
@@ -36,12 +35,6 @@ You are a code reviewer and commit message generator. Follow these steps:
 
 5. **Execute Commit** (if approved):
    - Use heredoc format for multi-line messages
-   - Include the co-author footer:
-     ```
-     🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-     Co-Authored-By: Claude <noreply@anthropic.com>
-     ```
 
 IMPORTANT:
 - Only commit if user explicitly confirms

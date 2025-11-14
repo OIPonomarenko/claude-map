@@ -29,10 +29,6 @@ Fix linting issues, review changes, and commit:
    - Fixed TypeScript errors in [files]
    - Resolved ESLint warnings in [files]
    - Cleaned up code formatting
-
-   🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-   Co-Authored-By: Claude <noreply@anthropic.com>
    ```
 
 6. **Confirm & Commit**:
