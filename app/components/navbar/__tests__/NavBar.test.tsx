@@ -5,22 +5,20 @@ import { navLinks } from '../navLinks'
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => {
-    // Remove priority prop as it's not a standard img attribute
-    const { priority, alt, ...restProps } = props
+  default: (props: { priority?: boolean; alt: string; [key: string]: unknown }) => {
+    const { priority, alt } = props
     // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
-    return <img {...restProps} data-priority={priority ? 'true' : 'false'} alt={alt} />
+    return <img data-priority={priority ? 'true' : 'false'} alt={alt} />
   },
 }))
 
 // Mock Next.js Link component
 jest.mock('next/link', () => ({
   __esModule: true,
-  default: ({ children, href }: any) => {
+  default: ({ children, href }: { children: React.ReactNode; href: string }) => {
     return <a href={href}>{children}</a>
   },
 }))
-
 
 
 describe('NavBar', () => {

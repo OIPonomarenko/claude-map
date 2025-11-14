@@ -165,7 +165,7 @@ describe('MapboxExplorer', () => {
         setCenter: jest.fn(),
         setZoom: jest.fn(),
         resize: jest.fn(),
-      }) as any)
+      }) as unknown as mapboxgl.Map)
 
       const { unmount } = render(<MapboxExplorer />)
 
