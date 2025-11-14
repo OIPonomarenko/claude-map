@@ -4,12 +4,20 @@ import '@testing-library/jest-dom'
 import NavBar from '../NavBar'
 import { navLinks } from '../navLinks'
 
+type ImageProps = {
+  src: string
+  alt: string
+  width: number
+  height: number
+  priority?: boolean
+}
+
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: { priority?: boolean; alt: string }) => {
+  default: ({priority, alt, ...rest}: ImageProps) => {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img data-priority={props.priority ? 'true' : 'false'} alt={props.alt} />
+    return <img {...rest} data-priority={priority ? 'true' : 'false'} alt={alt} />
   },
 }))
 
@@ -45,6 +53,13 @@ describe('NavBar', () => {
     it('should render logo with correct src', () => {
       renderNavBar()
       expect(getLogo()).toHaveAttribute('src', '/location_logo.svg')
+    })
+
+    it('should render logo with correct dimensions', () => {
+      renderNavBar()
+      const logo = getLogo()
+      expect(logo).toHaveAttribute('width', '32')
+      expect(logo).toHaveAttribute('height', '32')
     })
 
     it('should render notification bell icon', () => {
