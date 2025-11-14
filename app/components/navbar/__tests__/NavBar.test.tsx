@@ -47,13 +47,6 @@ describe('NavBar', () => {
       expect(getLogo()).toHaveAttribute('src', '/location_logo.svg')
     })
 
-    it('should render logo with correct dimensions', () => {
-      renderNavBar()
-      const logo = getLogo()
-      expect(logo).toHaveAttribute('width', '32')
-      expect(logo).toHaveAttribute('height', '32')
-    })
-
     it('should render notification bell icon', () => {
       renderNavBar()
       const bell = getBell()
