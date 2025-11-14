@@ -34,7 +34,6 @@ export default function MapboxExplorer() {
     mapRef.current.on('moveend', updatePosition)
 
     return () => {
-      mapRef.current?.off('moveend', updatePosition)
       mapRef.current?.remove()
     }
   }, [])

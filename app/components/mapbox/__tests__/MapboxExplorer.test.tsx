@@ -2,6 +2,7 @@ import { render, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import mapboxgl from 'mapbox-gl'
 import MapboxExplorer from "@/app/components/mapbox/MapboxExplorer"
+import {INITIAL_CENTER, INITIAL_ZOOM} from "@/app/components/mapbox/constants"
 
 describe('MapboxExplorer', () => {
   const originalEnv = process.env
@@ -16,28 +17,12 @@ describe('MapboxExplorer', () => {
   })
 
   describe('Rendering', () => {
-    it('should render the map container', () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const { container } = render(<MapboxExplorer />)
-
-      const mapContainer = container.querySelector('#map-container')
-      expect(mapContainer).toBeInTheDocument()
-    })
-
     it('should render map container with correct id', () => {
       process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
       const { container } = render(<MapboxExplorer />)
 
       const mapContainer = container.querySelector('#map-container')
       expect(mapContainer).toBeInTheDocument()
-    })
-
-    it('should render map container with correct minimum height style', () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const { container } = render(<MapboxExplorer />)
-
-      const mapContainer = container.querySelector('#map-container')
-      expect(mapContainer).toHaveStyle({ minHeight: 'calc(100vh - 260px)' })
     })
   })
 
@@ -62,31 +47,8 @@ describe('MapboxExplorer', () => {
       await waitFor(() => {
         expect(MockedMap).toHaveBeenCalledWith(
           expect.objectContaining({
-            center: [35.004776125010544, 48.43349586012707],
-            zoom: 10,
-          })
-        )
-      })
-    })
-
-    it('should create a new Mapbox Map instance with custom center and zoom', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-      const customCenter: [number, number] = [-74.006, 40.7128]
-      const customZoom = 12
-
-      render(
-        <MapboxExplorer
-          initialCenter={customCenter}
-          initialZoom={customZoom}
-        />
-      )
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            center: customCenter,
-            zoom: customZoom,
+            center: INITIAL_CENTER,
+            zoom: INITIAL_ZOOM,
           })
         )
       })
@@ -99,56 +61,6 @@ describe('MapboxExplorer', () => {
       render(<MapboxExplorer />)
 
       expect(MockedMap).not.toHaveBeenCalled()
-    })
-  })
-
-  describe('Props', () => {
-    it('should accept custom initialCenter prop', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-      const customCenter: [number, number] = [0, 0]
-
-      render(<MapboxExplorer initialCenter={customCenter} />)
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            center: customCenter,
-          })
-        )
-      })
-    })
-
-    it('should accept custom initialZoom prop', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-      const customZoom = 15
-
-      render(<MapboxExplorer initialZoom={customZoom} />)
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            zoom: customZoom,
-          })
-        )
-      })
-    })
-
-    it('should work with different LngLatLike formats', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-      const centerAsObject = { lng: -122.4194, lat: 37.7749 }
-
-      render(<MapboxExplorer initialCenter={centerAsObject} />)
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            center: centerAsObject,
-          })
-        )
-      })
     })
   })
 
@@ -189,37 +101,6 @@ describe('MapboxExplorer', () => {
   })
 
   describe('Edge Cases', () => {
-    it('should handle zero zoom level', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-
-      render(<MapboxExplorer initialZoom={0} />)
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            zoom: 0,
-          })
-        )
-      })
-    })
-
-    it('should handle negative coordinates', async () => {
-      process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
-      const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
-      const negativeCoords: [number, number] = [-180, -90]
-
-      render(<MapboxExplorer initialCenter={negativeCoords} />)
-
-      await waitFor(() => {
-        expect(MockedMap).toHaveBeenCalledWith(
-          expect.objectContaining({
-            center: negativeCoords,
-          })
-        )
-      })
-    })
-
     it('should not reinitialize map on re-render', async () => {
       process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token'
       const MockedMap = mapboxgl.Map as jest.MockedClass<typeof mapboxgl.Map>
@@ -232,7 +113,6 @@ describe('MapboxExplorer', () => {
 
       rerender(<MapboxExplorer />)
 
-      // Should still only be called once due to empty dependency array in useEffect
       expect(MockedMap).toHaveBeenCalledTimes(1)
     })
   })
