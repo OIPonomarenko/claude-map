@@ -12,9 +12,9 @@ export default function Home() {
           </div>
         </header>
       </div>
-      <main className="relative -mt-32">
+      <main className="-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
-          <div className="px-5 sm:px-6 py-6 bg-white shadow-md rounded-lg">
+          <div className="relative px-5 sm:px-6 py-6 bg-white shadow-md rounded-lg">
             <MapboxExplorer />
           </div>
         </div>

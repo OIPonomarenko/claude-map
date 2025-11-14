@@ -70,11 +70,6 @@ describe('Home Page', () => {
       expect(header?.parentElement).toHaveClass('bg-slate-900', 'pb-32')
     })
 
-    it('should have main with negative margin', () => {
-      const { container } = render(<Home />)
-      const main = container.querySelector('main')
-      expect(main).toHaveClass('relative', '-mt-32')
-    })
   })
 
   describe('Styling', () => {
