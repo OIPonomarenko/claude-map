@@ -44,13 +44,3 @@ body {
 .sidebar {
   font-family: monospace;
 }
-
-.reset-button {
-  position: absolute;
-  top: 50px;
-  z-index: 1;
-  left: 12px;
-  padding: 4px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}

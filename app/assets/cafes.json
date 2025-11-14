@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": 0,
+      "type": "Feature",
+      "properties": {
+        "name": "Holy Bun",
+        "type": "expensive"
+      },
+      "geometry": {
+        "coordinates": [35.04383279105, 48.46477901715815],
+        "type": "Point"
+      }
+    },
+    {
+      "id": 1,
+      "type": "Feature",
+      "properties": {
+        "name": "Homie",
+        "type": "good"
+      },
+      "geometry": {
+        "coordinates": [35.04620941220086, 48.46213486667174],
+        "type": "Point"
+      }
+    },
+    {
+      "id": 2,
+      "type": "Feature",
+      "properties": {
+        "name": "Magic Coffee",
+        "type": "cheap"
+      },
+      "geometry": {
+        "coordinates": [35.0467251269573, 48.46545438097704],
+        "type": "Point"
+      }
+    },
+    {
+      "id": 3,
+      "type": "Feature",
+      "properties": {
+        "name": "Untsiia",
+        "type": "american"
+      },
+      "geometry": {
+        "coordinates": [35.05262908484626, 48.46315714083972],
+        "type": "Point"
+      }
+    }
+  ]
+}
