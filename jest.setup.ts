@@ -7,12 +7,18 @@ jest.mock('mapbox-gl', () => ({
     Map: jest.fn(() => ({
       addControl: jest.fn(),
       on: jest.fn(),
+      off: jest.fn(),
       remove: jest.fn(),
       getCenter: jest.fn(() => ({ lng: 0, lat: 0 })),
       getZoom: jest.fn(() => 10),
       setCenter: jest.fn(),
       setZoom: jest.fn(),
       resize: jest.fn(),
+      loadImage: jest.fn((src, callback) => callback(null, {})),
+      addImage: jest.fn(),
+      addSource: jest.fn(),
+      addLayer: jest.fn(),
+      getLayer: jest.fn(),
     })),
     NavigationControl: jest.fn(),
     Marker: jest.fn(() => ({
@@ -30,6 +36,7 @@ jest.mock('mapbox-gl', () => ({
     })),
     accessToken: '',
   },
+  LngLat: jest.fn((lng, lat) => ({ lng, lat })),
   LngLatLike: {},
 }))
 

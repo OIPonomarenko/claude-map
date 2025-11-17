@@ -120,7 +120,7 @@ describe('Home Page', () => {
 
   describe('Component Integration', () => {
     it('should render NavBar before MapboxExplorer', () => {
-      const { container } = render(<Home />)
+      render(<Home />)
       const navbar = screen.getByTestId('navbar')
       const mapbox = screen.getByTestId('mapbox-explorer')
 
@@ -129,7 +129,7 @@ describe('Home Page', () => {
     })
 
     it('should render header between NavBar and MapboxExplorer', () => {
-      const { container } = render(<Home />)
+      render(<Home />)
       const navbar = screen.getByTestId('navbar')
       const heading = screen.getByText('Dashboard')
       const mapbox = screen.getByTestId('mapbox-explorer')
@@ -140,7 +140,7 @@ describe('Home Page', () => {
     })
 
     it('should contain MapboxExplorer within a card container', () => {
-      const { container } = render(<Home />)
+      render(<Home />)
       const mapbox = screen.getByTestId('mapbox-explorer')
       const cardWrapper = mapbox.parentElement
 
